@@ -877,3 +877,64 @@ func newSharedE(name, id string, children []Element) *SharedElement {
 		id: id,
 	}
 }
+
+var (
+	gxvieweroptionsStartElement = xml.StartElement{
+		Name: xml.Name{
+			Local: "gx:ViewerOptions",
+		},
+	}
+	gxvieweroptionsEndElement = gxvieweroptionsStartElement.End()
+)
+
+// GxOption is a gx:option element.
+// Name can be "streetview", "historicalimagery" & "sunlight"
+// Omitting Enabled enables the option.
+type GxOption struct {
+	Name, Enabled string
+}
+
+type GxViewerOptionsElement struct {
+	options []GxOption
+}
+
+// GxViewerOptions returns a new gx:ViewerOptions element.
+func GxViewerOptions(value ...GxOption) *GxViewerOptionsElement {
+	return &GxViewerOptionsElement{options: value}
+}
+
+// Write writes an XML header and voe to w.
+func (voe *GxViewerOptionsElement) Write(w io.Writer) error {
+	return write(w, "", "  ", voe)
+}
+
+// WriteIndent writes an XML header and voe to w.
+func (voe *GxViewerOptionsElement) WriteIndent(w io.Writer, prefix, indent string) error {
+	return write(w, prefix, indent, voe)
+}
+
+// MarshalXML marshals GxViewerOptions
+func (voe *GxViewerOptionsElement) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
+	if err := e.EncodeToken(gxvieweroptionsStartElement); err != nil {
+		return err
+	}
+	// Create simple elements and let EncodeElement do the work.
+	for _, option := range voe.options {
+		attrs := []xml.Attr{
+			{Name: xml.Name{Local: "name"}, Value: option.Name},
+		}
+		if option.Enabled != "" {
+			attrs = append(attrs, xml.Attr{Name: xml.Name{Local: "enabled"}, Value: option.Enabled})
+		}
+		se := SimpleElement{
+			StartElement: xml.StartElement{
+				Name: xml.Name{Local: "gx:option"},
+				Attr: attrs,
+			},
+		}
+		if err := e.EncodeElement(xml.CharData(se.value), se.StartElement); err != nil {
+			return err
+		}
+	}
+	return e.EncodeToken(gxvieweroptionsEndElement)
+}
