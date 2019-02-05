@@ -5,14 +5,14 @@ import (
 	"flag"
 	"fmt"
 	"image/color"
+	"kml"
+	"kml/icon"
+	"kml/sphere"
 	"log"
 	"net/url"
 	"os"
 	"strconv"
 
-	"github.com/twpayne/go-kml"
-	"github.com/twpayne/go-kml/icon"
-	"github.com/twpayne/go-kml/sphere"
 	"github.com/twpayne/go-polyline"
 )
 

@@ -1,10 +1,9 @@
 package sphere
 
 import (
+	"kml"
 	"reflect"
 	"testing"
-
-	"github.com/twpayne/go-kml"
 )
 
 func TestCircle(t *testing.T) {

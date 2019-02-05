@@ -3,9 +3,8 @@
 package sphere
 
 import (
+	"kml"
 	"math"
-
-	"github.com/twpayne/go-kml"
 )
 
 const (

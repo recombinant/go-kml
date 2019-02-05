@@ -1,10 +1,9 @@
 package sphere
 
 import (
+	"kml"
 	"log"
 	"os"
-
-	"github.com/twpayne/go-kml"
 )
 
 func ExampleT_Circle() {
