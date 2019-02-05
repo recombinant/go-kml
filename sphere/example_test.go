@@ -1,7 +1,7 @@
 package sphere
 
 import (
-	"kml"
+	"github.com/recombinant/go-kml"
 	"log"
 	"os"
 )

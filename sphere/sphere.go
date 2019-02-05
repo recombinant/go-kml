@@ -3,7 +3,7 @@
 package sphere
 
 import (
-	"kml"
+	"github.com/recombinant/go-kml"
 	"math"
 )
 

@@ -4,10 +4,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/recombinant/go-kml"
+	"github.com/recombinant/go-kml/icon"
+	"github.com/recombinant/go-kml/sphere"
 	"image/color"
-	"kml"
-	"kml/icon"
-	"kml/sphere"
 	"log"
 	"net/url"
 	"os"

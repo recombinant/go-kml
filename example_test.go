@@ -1,11 +1,10 @@
 package kml_test
 
 import (
+	"github.com/recombinant/go-kml"
 	"image/color"
 	"log"
 	"os"
-
-	"github.com/twpayne/go-kml"
 )
 
 func ExamplePlacemark() {

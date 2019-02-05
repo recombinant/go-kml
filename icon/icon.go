@@ -3,7 +3,7 @@
 package icon
 
 import (
-	"kml"
+	"github.com/recombinant/go-kml"
 	"strconv"
 )
 
